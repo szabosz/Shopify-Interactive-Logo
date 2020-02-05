@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Interative Shopify Logo</title>
+
+<!-- Welcome to ZIM at https://zimjs.com - Code Creativity!                              -->
+<!-- ZIM runs on the HTML Canvas powered by JavaScript and CreateJS https://createjs.com -->
+<!-- Founded by Inventor Dan Zen - http://danzen.com - Canadian New Media Award Winner   -->
+<!-- ZIM is free to use. You can donate to help improve ZIM at https://zimjs.com/donate  -->
+
+<script src="https://zimjs.org/cdn/1.2.1/createjs_min.js"></script>
+<script src="https://zimjs.org/cdn/10.6.0/zim.js"></script>
+<!-- use zimjs.com/distill for minified individual functions! -->
+
+<script>
+
+// SCALING OPTIONS
+// scaling can have values as follows with full being the default
+// "fit"    sets canvas and stage to dimensions and scales to fit inside window size
+// "outside"    sets canvas and stage to dimensions and scales to fit outside window size
+// "full"    sets stage to window size with no scaling
+// "tagID"    add canvas to HTML tag of ID - set to dimensions if provided - no scaling
+
+var scaling = "fit"; // this will resize to fit inside the screen dimensions
+var width = 1024;
+var height = 768;
+var color = white;
+var outerColor = darker;
+
+// as of ZIM 5.5.0 you do not need to put zim before ZIM functions and classes
+var frame = new Frame(scaling, width, height, color, outerColor);
+frame.on("ready", function() {
+    zog("ready from ZIM Frame"); // logs in console (F12 - choose console)
+
+    var stage = frame.stage;
+    var stageW = frame.width;
+    var stageH = frame.height;
+
+// SUPER S 
+
+const flames = new Emitter({
+            obj:new Circle(32, orange).alp(.6),
+            startPaused:true,
+            random:{
+                scaleX:{min:1.3, max:1.5},
+                scaleY:{min:2.3, max:2.5}
+            },
+            interval:20,
+            life:1500,
+            fade:true, 
+            decayTime:1000,  
+            gravity:15,
+            force:{min:.6, max:.8},
+            angle:{min:-90-40, max:-90+40}, // 0 is along the x axis
+            layers:"random"
+        }).centerReg().mov(-10,120);
+
+    var jetpack = new Blob({
+        points:"M575.9,486C562.087,489.053 543.9,482.421 543.9,451C543.9,419.579 539.15,329.167 546,305C549.546,292.489 565.105,286.105 585,306C604.895,325.895 608,320 608,320C608,320 622,319.761 631,308C641.186,294.69 666.276,285.474 670,304C675.071,329.229 680.167,426.667 675,456C672.776,468.629 667.132,500.732 633.4,484C614.736,474.742 594.75,481.833 575.9,486Z",
+        color: "#FFCD12",
+        interative:false,
+    }).transformPoints("x",-555);
+
+    var body = new Blob({
+        points:"M440,431C439.629,432.106 435.946,437.999 434.914,436.96C433.499,435.536 436.806,432.22 435.852,432.178C434.204,432.106 430.707,437.661 429.568,437.2C426.724,436.049 434.216,429.953 432.761,430.133C430.67,430.391 425.386,438.096 424.219,437.444C421.519,435.935 431.018,428.63 430.035,428.19C428.543,427.521 421.172,434.782 421.461,433.154C422.161,429.207 432.93,423.303 432.515,422.998C431.915,422.557 426.825,420.83 427.123,417.344C427.364,414.513 436.47,423.81 439,421.041C442.217,417.522 546.708,339.292 554,332C562.209,323.791 582.512,332.408 588,325C591.134,320.768 579.357,296.279 577.615,279.917C577.427,278.149 599.011,255.177 609.727,257.215C614.97,258.212 637.707,278.001 637.232,280.125C635.245,289.018 624.844,325.899 626,328C626.777,329.412 651.396,325.071 658,331C721.675,388.168 774.284,422.927 778.431,422.545C782.327,422.186 790.21,416.959 790.719,417.806C792.58,420.902 785.014,422.278 785.078,423.815C785.144,425.401 791.502,434.959 791.153,435.856C789.868,439.156 785.776,427.624 784.586,429.12C784.083,429.751 789.359,437.729 789.119,438.637C788.173,442.226 783.452,431.099 782.496,430.93C779.187,430.343 788.25,439.907 785.302,440.615C784.595,440.785 780.419,432.795 779.108,433.49C777.837,434.163 780.513,434.724 780.654,437.649C780.817,441.047 774.75,431.21 774,431C754.333,425.5 654.806,373.194 653,375C652.595,375.405 655.098,433.852 652.013,474.155C651.484,481.068 643.938,470.301 643.382,477.761C636.924,564.426 629.16,655.813 632,660.041C632.707,661.093 653.102,669.959 651.718,680.59C650.921,686.718 618.213,687.05 614.03,662.518C609.349,635.06 616.911,517.381 610.611,517.778C603.633,518.218 610.825,630.301 606.762,665.087C604.615,683.469 568.363,689.603 568,678.041C567.546,663.587 587.87,664.887 589.604,657.533C591.25,650.551 575.715,501.542 572.456,475.182C572.124,472.5 564.65,478.669 564.388,475.979C562.812,459.782 563,378 563,378C563,378 446.558,411.441 440,431Z",
+        color: "#95BF47",
+        interative:false,
+        }).transformPoints("x",-570);
+    
+    
+    var strap1 = new Blob({
+            points:"M573,328L570.895,336.772L569.343,343.236L565.086,360.974L561,378L563,381L568.019,366.999L570.678,359.583L574.188,349.791L578.289,338.352L582,328L573,328Z",
+            color: "#5E8E3E",
+            interative:false,
+        }).transformPoints("x",-555)
+        .transformPoints("y",5);
+
+
+    var strap2 = new Blob({
+        points:"M573,328L570.067,340.219L564.532,363.285L561,378L563,381L571.724,356.663L574.003,350.308L577.278,341.171L579.71,334.388L582,328L573,328Z",
+        color: "#5E8E3E",
+        interactive:false,
+    }).transformPoints("x",-660)
+    .transformPoints("y",5)
+    .transformPoints("scaleX",-1);
+
+
+    var heart = new Blob({
+        points:"M610.727,372C613.312,368.79 616.231,366.121 619.264,364.018C625.057,360.003 631.271,358.055 636.394,358.361C644.326,358.834 649.641,364.713 646.722,376.689C645.35,382.317 642.159,389.293 636.566,397.687C633.014,403.019 628.492,408.922 622.853,415.417C619.274,419.539 615.245,423.898 610.727,428.5C609.479,429.771 601.13,422.362 592.661,411.833C589.049,407.342 585.415,402.283 582.3,397.089C579.311,392.102 576.8,386.99 575.248,382.134C572.789,374.439 572.737,367.388 577,362.5C581.913,356.867 588.062,357.002 593.759,359.291C602.813,362.927 610.727,372 610.727,372Z",
+        color: "#FFF",
+        interactive:false,
+    }).transformPoints("x",-558)
+    .transformPoints("y",10);
+   
+
+
+// .transformType("rotation",90)
+
+// SHOPIFY LOGO
+
+    var front = new Blob({
+        points: "M97.3,330.7C97.3,330.7 18.583,354.921 18.4,355C13.6,356.5 13.5,356.6 12.9,361.1C12.782,361.9 -0.1,461.2 -0.1,461.2L97.2,479.4L150,468C150.016,467.967 131.515,342.035 131.5,341.9C131.45,341.451 116.3,339.6 116.3,339.6C116.3,339.6 106.3,329.764 106.1,329.6C105.1,328.6 97.3,330.7 97.3,330.7Z",
+        color: "#95BF47",
+        interactive:false
+        })
+        .center()
+        .mov(-65,-390)
+        front.on("mouseover", function(){
+            pauseAnimate(false);
+        })
+        front.animate({
+            props:{shape:jetpack, color:jetpack.color},
+            time:1000,
+            loop:false,
+            rewind:false,
+            rewindWait:200,
+            ease:"elasticInOut"
+        });
+
+    var handle1 = new Blob({
+            points:"M39.8,350.2L44.244,349.818L49,349.41C48.934,349.274 48.958,348.444 49.039,347.266C49.119,346.089 49.256,344.565 49.414,343.036C49.538,341.836 50.166,337.091 50.294,336.696C50.639,335.629 51.955,331.602 52.271,330.666C52.774,329.181 53.269,327.774 53.763,326.469C54.484,324.561 55.201,322.873 55.93,321.484C56.758,319.909 57.601,318.717 58.486,318.022C60.14,316.724 61.652,315.977 63.037,315.595C64.247,315.262 65.359,315.207 66.384,315.305C67.734,315.435 68.932,315.831 70,316.21C71.249,316.653 72.609,317.985 73.974,319.805C74.66,320.719 75.348,321.757 76.023,322.867C76.466,323.594 76.904,324.353 77.333,325.128C77.718,325.824 78.096,326.534 78.464,327.247C79.036,328.352 79.583,329.466 80.098,330.549C80.668,331.75 81.198,332.913 81.672,333.986C82.082,334.912 82.451,335.771 82.77,336.529C83.605,338.51 84.1,339.801 84.1,339.801L88.7,338.86C88.7,338.86 88.338,337.802 87.748,336.162C87.391,335.169 86.95,333.963 86.454,332.649C86.028,331.519 85.562,330.309 85.074,329.087C84.74,328.251 84.397,327.409 84.049,326.583C83.485,325.241 82.91,323.94 82.35,322.773C81.775,321.573 81.215,320.514 80.7,319.696C80.214,318.924 79.686,318.127 79.124,317.33C78.045,315.8 76.84,314.27 75.558,312.916C73.712,310.966 71.708,309.384 69.7,308.7C68.822,308.401 67.981,308.2 67.168,308.086C66.159,307.945 65.192,307.94 64.25,308.054C62.727,308.237 61.269,308.731 59.8,309.462C58.366,310.176 56.923,311.117 55.4,312.216C54.915,312.566 54.427,312.969 53.94,313.418C53.347,313.964 52.756,314.579 52.173,315.251C51.638,315.867 49.579,318.684 49.097,319.457C48.435,320.518 45.697,326.185 45.153,327.899C44.847,328.862 44.085,331.636 43.226,334.959C42.887,336.268 42.534,337.664 42.187,339.067C41.887,340.281 41.592,341.5 41.317,342.676C40.582,345.816 39.986,348.642 39.8,350.2Z",
+            color: "#95BF47",
+            interactive:false,
+        })
+        .center()
+        .mov(-50,-385)
+        handle1.on("mouseover", function(){
+            pauseAnimate(false);
+        })
+        handle1.animate({
+            props:{shape:body, color:body.color},
+            time:900,
+            loop:false,
+            rewind:false,
+            rewindWait:200,
+            ease:"elasticInOut"
+        });
+
+
+    var side = new Blob({
+            points: "M130,340.4C129.4,340.4 116.3,339.4 116.3,339.4C116.3,339.4 107.2,330.3 106.1,329.4C105.7,329 105.2,328.8 104.8,328.8L103.094,363.997L101.258,401.88L97.5,479.4L150.3,468C150.3,468 145.563,435.939 140.869,404.148C139.141,392.44 137.418,380.769 135.941,370.749C133.502,354.214 131.731,342.177 131.7,341.9C131.3,341 130.6,340.6 130,340.4Z",
+            color: "#5E8E3E",
+            interactive:false
+        })
+        .center()
+        .mov(-65,-390)
+        side.on("mouseover", function(){
+            pauseAnimate(false);
+        })
+        side.animate({
+            props:{shape:strap1, color:strap1.color},
+            time:1000,
+            loop:false,
+            rewind:false,
+            rewindWait:200,
+            ease:"elasticInOut"
+        });
+
+
+        var handle2 = new Blob({
+            points: "M31.096,358.151C30.722,358.221 43.359,320.015 55.4,312.216C60.226,309.09 64.016,307.8 69.7,308.7C74.774,309.503 79.089,314.73 80.7,319.696L85.7,347.7C85.7,347.7 77.792,349.289 77.8,348.801C77.958,339.586 74.557,318.212 71,315.683C68.319,313.777 61.556,315.063 57.486,318.022C53.133,321.187 49.532,327.743 45.294,336.696C43.162,341.2 40.373,356.469 40.111,356.974C39.701,357.768 32.807,357.831 31.096,358.151Z",
+            color: "#95BF47",
+            interactive:false
+        })
+        .center()
+        .mov(-65,-390); 
+        handle2.on("mouseover", function(){
+            pauseAnimate(false);
+        })
+        handle2.animate({
+            props:{shape:strap2, color:strap2.color},
+            time:1000,
+            loop:false,
+            rewind:false,
+            rewindWait:200,
+            ease:"elasticInOut"
+        });
+        
+        pauseAnimate();
+
+        // timeout(50,function(){stopAnimate();});
+
+    var letterS = new Blob({
+        points: "M79.4,369.6L73,388.9C73,388.9 67.2,385.8 60.3,385.8C50,385.8 49.5,392.3 49.5,393.9C49.5,402.7 72.5,406.1 72.5,426.8C72.5,443.1 62.2,453.6 48.3,453.6C31.5,453.6 23.1,443.2 23.1,443.2L27.6,428.4C27.6,428.4 36.4,436 43.8,436C48.7,436 50.7,432.2 50.7,429.4C50.7,417.9 31.9,417.4 31.9,398.4C31.9,382.5 43.3,367.1 66.4,367.1C75,367 79.4,369.6 79.4,369.6Z",
+        color: "#FFF",
+        interactive:false
+        })
+        // .sca(1.5) why does it make the S disappear from the bag
+        .center()
+        .mov(-65,-390);
+
+   // show emitter
+   var container = new Container();
+        stage.addChild(letterS);
+        letterS.on("mouseover", function(){
+            flames.pauseEmitter(false);
+        });
+        letterS.on("click", function(){
+            letterS.animate({
+                props:{scale:.97},
+                time:400,
+                loop:3, 
+                rewind:true
+            });
+        letterS.animate({
+            props:{shape:heart, color:heart.color},
+            time:1000,
+            loop:false,
+            rewind:false,
+            rewindWait:200,
+            ease:"elasticInOut"
+            });
+        });
+    stage.update(); // this is needed to show any changes
+
+}); // end of ready
+
+
+</script>
+
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+
+</head>
+
+<body>
+<!-- canvas with id="myCanvas" is made by zim Frame -->
+</body>
+</html>
